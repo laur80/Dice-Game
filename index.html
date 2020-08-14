@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        background-color: rgb(174, 214, 187);
+      }
+
+      #player1,
+      #player2 {
+        margin-top: 100px;
+
+        height: 200px;
+        width: 200px;
+        padding: 50px;
+        margin-left: 100px;
+        display: inline-block;
+        background-color: rgb(235, 235, 162);
+        text-align: center;
+        font-size: 7em;
+      }
+      #player1 {
+        margin-left: 400px;
+      }
+
+      #player2 {
+        margin-left: 300px;
+      }
+
+      button {
+        padding: 40px;
+        height: 40px;
+        width: 200px;
+        margin-top: 20px;
+        margin-left: 380px;
+        text-align: center;
+        font-size: 2em;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: red;
+      }
+      #output {
+        background-color: aliceblue;
+        height: 100px;
+        width: 500px;
+        margin-top: 100px;
+        margin-left: 200px;
+        text-align: center;
+        font-size: 2em;
+        color: red;
+        margin-left: 600px;
+      }
+      .btn {
+        margin-left: 360px;
+      }
+    </style>
+
+    <div>
+      <div class="gameArea">
+        <div id="output"></div>
+        <div id="player1"></div>
+        <div id="player2"></div>
+      </div>
+      <div class="btn">
+        <button type="button">Roll</button>
+      </div>
+
+      <script>
+        const output = document.querySelector('#output');
+        const pl1 = document.querySelector('#player1');
+        const pl2 = document.querySelector('#player2');
+        const button = document.querySelector('button');
+
+        const roll = (m) => {
+          let res = Math.floor(Math.random() * m + 1);
+          let n = 9855 + res;
+          let char = '&#' + n + ';';
+          return res + ' ' + char;
+        };
+
+        button.addEventListener('click', (e) => {
+          let r = [roll(6), roll(6)];
+          if (r[0] === r[1]) {
+            output.innerHTML = 'DRAW';
+          } else if (r[0] > r[1]) {
+            output.innerHTML = 'Player 1 won';
+          } else {
+            output.innerHTML = 'Player 2 won';
+          }
+
+          pl1.innerHTML = r[0];
+          pl2.innerHTML = r[1];
+        });
+      </script>
+    </div>
+  </body>
+</html>
